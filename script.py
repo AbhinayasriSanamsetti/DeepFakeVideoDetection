@@ -87,7 +87,7 @@ def process_videos(video_dirs, output_dir, labels_file, frame_interval=10):
         if not os.path.exists(video_dir):
             print(f"Warning: Directory {video_dir} not found.")
             continue
-        
+
         for video_file in os.listdir(video_dir):
             if video_file.endswith(('.mp4', '.avi', '.mov')):
                 video_path = os.path.join(video_dir, video_file)
@@ -100,6 +100,7 @@ video_dirs = [
    # (SYNTHESIS_VIDEOS_DIR, 1),  # Fake (synthesized) videos -> label 1
     (YOUTUBE_REAL_VIDEOS_DIR, 0)  # YouTube real videos -> label 0 (assuming they are manipulated)
 ]
+
 
 # Process all videos
 process_videos(video_dirs, OUTPUT_DIR, LABELS_FILE, frame_interval=FRAME_INTERVAL)
