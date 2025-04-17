@@ -1,32 +1,35 @@
-import os
-import copy
 import torch
-import logging
-from PIL import Image
-from tqdm import tqdm
-from torch import nn, optim
-from torch.utils.data import Dataset, DataLoader, random_split
+import torch.nn as nn
+import torch.optim as optim
 from torchvision import models, transforms
-from sklearn.metrics import accuracy_score, precision_score, confusion_matrix, classification_report
+from torch.utils.data import DataLoader, Dataset, random_split
+from PIL import Image
+import os
+from sklearn.metrics import accuracy_score
+import logging
 from collections import Counter
+from tqdm import tqdm
+import copy
 
 # 🔧 Config
-LABELS_FILE = "C:/Users/HP/Desktop/deepfake/frames_labels/labels.txt"
+LABELS_FILE = "C:/Users/HP/Desktop/deepfake/frames_labels/labels.txt"  # Update the file path accordingly
 SEQ_LENGTH = 16
 BATCH_SIZE = 4
 LEARNING_RATE_CNN = 1e-5
 LEARNING_RATE_LSTM = 1e-4
-EPOCHS = 10
+EPOCHS = 2
 VALIDATION_SPLIT = 0.2
 PATIENCE = 5
 LOG_FILE = "training_output_log.txt"
 VAL_ACC_FILE = "validation_accuracy.txt"
 
-# 🧠 CNN Feature Extractor
+# 🧠 CNN Feature Extractor (Updated to use `weights`)
+from torchvision.models import resnet18, ResNet18_Weights
+
 class CNNFeatureExtractor(nn.Module):
     def __init__(self):
         super(CNNFeatureExtractor, self).__init__()
-        model = models.resnet18(pretrained=True)
+        model = resnet18(weights=ResNet18_Weights.IMAGENET1K_V1)  # Use weights argument to avoid deprecated warning
         self.feature_extractor = nn.Sequential(*list(model.children())[:-1])
 
     def forward(self, x):
@@ -127,6 +130,19 @@ def train_model():
         {'params': lstm.parameters(), 'lr': LEARNING_RATE_LSTM}
     ])
 
+    # 🔧 Load pre-trained model weights if available
+    PRETRAINED_MODEL_PATH =r'C:\Users\HP\Desktop\deepfake\best_lstm_model.pth'  # Provide the path to your saved model here
+
+    if os.path.exists(PRETRAINED_MODEL_PATH):
+        print(f"🔧 Loading pre-trained model from {PRETRAINED_MODEL_PATH}")
+        checkpoint = torch.load(PRETRAINED_MODEL_PATH)
+        # Load state_dict with strict=False to ignore mismatched keys
+        try:
+            lstm.load_state_dict(checkpoint, strict=False)
+            print("🔧 Pre-trained model loaded successfully.")
+        except Exception as e:
+            print(f"⚠️ Error loading model state dict: {e}")
+
     best_val_acc = 0.0
     best_model_wts = None
     epochs_no_improve = 0
@@ -157,8 +173,7 @@ def train_model():
             all_true.extend(labels.cpu().numpy())
 
         train_acc = accuracy_score(all_true, all_preds)
-        train_precision = precision_score(all_true, all_preds, average='weighted')
-        print(f"📊 Train Loss: {total_loss:.4f}, Acc: {train_acc:.2%}, Precision: {train_precision:.4f}")
+        print(f"📊 Train Loss: {total_loss:.4f}, Acc: {train_acc:.2%}")
 
         # 🔍 Validation
         cnn.eval()
@@ -177,20 +192,11 @@ def train_model():
                 val_labels.extend(labels.cpu().numpy())
 
         val_acc = accuracy_score(val_labels, val_preds)
-        val_precision = precision_score(val_labels, val_preds, average='weighted')
-        conf_matrix = confusion_matrix(val_labels, val_preds)
-        class_report = classification_report(val_labels, val_preds)
-
-        print(f"✅ Val Acc: {val_acc:.2%}, Precision: {val_precision:.4f}")
-        print(conf_matrix)
-        print(class_report)
+        print(f"✅ Val Acc: {val_acc:.2%}")
 
         # 📝 Logging
         logging.info(f"Epoch {epoch+1}")
-        logging.info(f"Train Acc: {train_acc:.4f}, Train Precision: {train_precision:.4f}")
-        logging.info(f"Val Acc: {val_acc:.4f}, Val Precision: {val_precision:.4f}")
-        logging.info(f"Confusion Matrix:\n{conf_matrix}")
-        logging.info(f"Classification Report:\n{class_report}")
+        logging.info(f"Train Acc: {train_acc:.4f}, Val Acc: {val_acc:.4f}")
 
         with open(VAL_ACC_FILE, "a") as val_log:
             val_log.write(f"Epoch {epoch+1}: {val_acc:.4f}\n")
@@ -212,4 +218,3 @@ def train_model():
 
 if __name__ == "__main__":
     train_model()
-

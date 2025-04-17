@@ -1,0 +1,102 @@
+2025-04-11 20:52:12,760 - Epoch 1
+2025-04-11 20:52:12,762 - Train Acc: 0.9008, Train Precision: 0.9002
+2025-04-11 20:52:12,762 - Val Acc: 0.9688, Val Precision: 0.9695
+2025-04-11 20:52:12,762 - Confusion Matrix:
+[[1708  146]
+ [  19 3412]]
+2025-04-11 20:52:12,762 - Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.92      0.95      1854
+           1       0.96      0.99      0.98      3431
+
+    accuracy                           0.97      5285
+   macro avg       0.97      0.96      0.97      5285
+weighted avg       0.97      0.97      0.97      5285
+
+2025-04-12 02:50:45,840 - Epoch 1
+2025-04-12 02:50:45,840 - Train Acc: 0.8999, Train Precision: 0.8993
+2025-04-12 02:50:45,840 - Val Acc: 0.9746, Val Precision: 0.9750
+2025-04-12 02:50:45,840 - Confusion Matrix:
+[[1758  114]
+ [  20 3393]]
+2025-04-12 02:50:45,840 - Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.94      0.96      1872
+           1       0.97      0.99      0.98      3413
+
+    accuracy                           0.97      5285
+   macro avg       0.98      0.97      0.97      5285
+weighted avg       0.98      0.97      0.97      5285
+
+2025-04-12 06:23:31,856 - Epoch 2
+2025-04-12 06:23:31,856 - Train Acc: 0.9520, Train Precision: 0.9519
+2025-04-12 06:23:31,856 - Val Acc: 0.9807, Val Precision: 0.9807
+2025-04-12 06:23:31,856 - Confusion Matrix:
+[[1803   69]
+ [  33 3380]]
+2025-04-12 06:23:31,856 - Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.98      0.96      0.97      1872
+           1       0.98      0.99      0.99      3413
+
+    accuracy                           0.98      5285
+   macro avg       0.98      0.98      0.98      5285
+weighted avg       0.98      0.98      0.98      5285
+
+2025-04-12 09:58:14,255 - Epoch 3
+2025-04-12 09:58:14,255 - Train Acc: 0.9648, Train Precision: 0.9648
+2025-04-12 09:58:14,255 - Val Acc: 0.9640, Val Precision: 0.9651
+2025-04-12 09:58:14,255 - Confusion Matrix:
+[[1824   48]
+ [ 142 3271]]
+2025-04-12 09:58:14,255 - Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.93      0.97      0.95      1872
+           1       0.99      0.96      0.97      3413
+
+    accuracy                           0.96      5285
+   macro avg       0.96      0.97      0.96      5285
+weighted avg       0.97      0.96      0.96      5285
+
+2025-04-12 21:06:14,784 - Epoch 1
+2025-04-12 21:06:14,804 - Train Acc: 0.9027, Train Precision: 0.9021
+2025-04-12 21:06:14,804 - Val Acc: 0.9688, Val Precision: 0.9694
+2025-04-12 21:06:14,804 - Confusion Matrix:
+[[1725  144]
+ [  21 3395]]
+2025-04-12 21:06:14,805 - Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.92      0.95      1869
+           1       0.96      0.99      0.98      3416
+
+    accuracy                           0.97      5285
+   macro avg       0.97      0.96      0.97      5285
+weighted avg       0.97      0.97      0.97      5285
+
+2025-04-13 00:42:21,750 - Epoch 2
+2025-04-13 00:42:21,750 - Train Acc: 0.9489, Train Precision: 0.9488
+2025-04-13 00:42:21,750 - Val Acc: 0.9676, Val Precision: 0.9679
+2025-04-13 00:42:21,750 - Confusion Matrix:
+[[1802   67]
+ [ 104 3312]]
+2025-04-13 00:42:21,750 - Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.95      0.96      0.95      1869
+           1       0.98      0.97      0.97      3416
+
+    accuracy                           0.97      5285
+   macro avg       0.96      0.97      0.96      5285
+weighted avg       0.97      0.97      0.97      5285
+
+2025-04-15 19:55:34,851 - Epoch 1
+2025-04-15 19:55:34,867 - Train Acc: 0.8884, Val Acc: 0.9658
+2025-04-16 02:25:25,011 - Epoch 1
+2025-04-16 02:25:25,011 - Train Acc: 0.9017, Val Acc: 0.9682
+2025-04-16 06:01:19,683 - Epoch 2
+2025-04-16 06:01:19,683 - Train Acc: 0.9529, Val Acc: 0.9642

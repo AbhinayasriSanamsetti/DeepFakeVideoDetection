@@ -1,1 +1,3 @@
 Validation Accuracy per Epoch
+Epoch 1: 0.9682
+Epoch 2: 0.9642
