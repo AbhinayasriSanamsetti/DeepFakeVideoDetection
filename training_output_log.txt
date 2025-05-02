@@ -4,19 +4,5 @@ Training accuracy:
 2025-04-11 20:52:12,762 - Confusion Matrix:
 [[1708  146]
  [  19 3412]]
-2025-04-15 19:55:34,851 - Epoch 1
-2025-04-15 19:55:34,867 - Train Acc: 0.8884, Val Acc: 0.9658
-2025-04-16 02:25:25,011 - Epoch 2
-2025-04-16 02:25:25,011 - Train Acc: 0.9017, Val Acc: 0.9682
-2025-04-16 06:01:19,683 - Epoch 3
-2025-04-16 06:01:19,683 - Train Acc: 0.9529, Val Acc: 0.9642
-Testing Accuracy:
-precision    recall  f1-score   support
 
-           0       0.91      0.72      0.81      1408
-           1       0.86      0.96      0.91      2556
-
-    accuracy                           0.88      3964
-   macro avg       0.89      0.84      0.86      3964
-weighted avg       0.88      0.88      0.87      3964
 
